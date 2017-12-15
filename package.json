@@ -16,9 +16,18 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {},
-  "dependencies": {},
+  "scripts": {
+    "build": "./scripts/build",
+    "watch": "./scripts/watch"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "eslint": "^4.13.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
