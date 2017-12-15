@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  pipelines:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /app
+    volumes:
+      - .:/app
