@@ -22,7 +22,9 @@
     "test": "./scripts/test"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0"
+    "babel-polyfill": "^6.26.0",
+    "bluebird": "^3.5.1",
+    "fs-extra": "^5.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
