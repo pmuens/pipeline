@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 rm -rf dist
 mkdir -p dist
 rsync -avz --exclude *.js --exclude node_modules src/ dist/
