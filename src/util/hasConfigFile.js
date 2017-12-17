@@ -6,7 +6,7 @@ const fsp = Promise.promisifyAll(fs)
 
 async function hasConfigFile(dirPath) {
   return fsp
-    .statAsync(path.join(dirPath, '.pipelines.yml'))
+    .statAsync(path.join(dirPath, '.pipeline.yml'))
     .then(() => true)
     .catch(() => false)
 }

@@ -13,7 +13,7 @@ async function readConfigFile(filePath) {
     .pop()
 
   if (!isValidConfigFile(filePath)) {
-    throw new Error(`The provided config file "${fileName}" is not a Pipelines config`)
+    throw new Error(`The provided config file "${fileName}" is not a Pipeline config`)
   }
 
   const fileContent = await fsp.readFileAsync(filePath)

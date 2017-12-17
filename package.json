@@ -1,18 +1,18 @@
 {
-  "name": "@pipelines-ci/local-engine",
+  "name": "@pipeline-ci/local-engine",
   "version": "0.1.0",
   "description": "Local Engine which runs builds and talks to the remote backend",
   "main": "dist/index.js",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pipelines-ci/local-engine"
+    "url": "https://github.com/pipeline-ci/local-engine"
   },
   "author": "Philipp Muens",
   "bugs": {
-    "url": "https://github.com/pipelines-ci/local-engine/issues"
+    "url": "https://github.com/pipeline-ci/local-engine/issues"
   },
-  "homepage": "https://github.com/pipelines-ci/local-engine#readme",
+  "homepage": "https://github.com/pipeline-ci/local-engine#readme",
   "publishConfig": {
     "access": "public"
   },

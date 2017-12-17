@@ -16,7 +16,7 @@ describe('readConfigFile()', () => {
   })
 
   it('should return the file content as an object', async () => {
-    const filePath = path.join(tmpDir, '.pipelines.yml')
+    const filePath = path.join(tmpDir, '.pipeline.yml')
     await fsp.writeFileAsync(filePath, fileContent)
 
     const res = await readConfigFile(filePath)

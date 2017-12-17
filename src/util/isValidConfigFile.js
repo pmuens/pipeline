@@ -6,7 +6,7 @@ function isValidConfigFile(filePath) {
     .slice(-1)
     .pop()
 
-  if (fileName === '.pipelines.yml') {
+  if (fileName === '.pipeline.yml') {
     return true
   }
   return false

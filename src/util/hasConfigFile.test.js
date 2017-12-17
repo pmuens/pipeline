@@ -15,8 +15,8 @@ describe('hasConfigFile()', () => {
     await fsp.ensureDirAsync(tmpDir)
   })
 
-  it('should detect .pipelines.yml file', async () => {
-    const filePath = path.join(tmpDir, '.pipelines.yml')
+  it('should detect .pipeline.yml file', async () => {
+    const filePath = path.join(tmpDir, '.pipeline.yml')
     await fsp.writeFileAsync(filePath, fileContent)
 
     const res = await hasConfigFile(tmpDir)
@@ -25,7 +25,7 @@ describe('hasConfigFile()', () => {
   })
 
   it('should return false if no file was found', async () => {
-    const filePath = path.join(tmpDir, '.pipelines.foo')
+    const filePath = path.join(tmpDir, '.pipeline.foo')
     await fsp.writeFileAsync(filePath, fileContent)
 
     const res = await hasConfigFile(tmpDir)
