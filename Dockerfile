@@ -9,3 +9,7 @@ RUN apt-get install -y nodejs build-essential
 
 # install yarn
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+
+# install Docker
+RUN curl -fsSL get.docker.com -o get-docker.sh
+RUN sh get-docker.sh
