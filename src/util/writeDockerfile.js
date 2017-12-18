@@ -4,7 +4,7 @@ import Promise from 'bluebird'
 
 const fsp = Promise.promisifyAll(fs)
 
-async function writeDockerfile(dirPath, image) {
+async function writeDockerfile(dirPath, projectName, image) {
   const fileContent = [
     `FROM ${image}`,
     '',
@@ -18,7 +18,7 @@ async function writeDockerfile(dirPath, image) {
     ''
   ].join('\n')
 
-  const dockerfilePath = path.join(dirPath, 'Dockerfile')
+  const dockerfilePath = path.join(dirPath, `${projectName}.dockerfile`)
   await fsp.writeFileAsync(dockerfilePath, fileContent, 'utf8')
 }
 
