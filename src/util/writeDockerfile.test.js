@@ -7,7 +7,6 @@ import getTmpDirPath from './getTmpDirPath'
 const fsp = Promise.promisifyAll(fse)
 
 describe('writeDockerfile()', () => {
-  const projectName = 'my-project'
   let tmpDir
 
   beforeEach(async () => {
@@ -18,12 +17,13 @@ describe('writeDockerfile()', () => {
   it('should write the enhanced Dockerfile', async () => {
     const image = 'node:latest'
 
-    await writeDockerfile(tmpDir, projectName, image)
+    const dockerfilePath = await writeDockerfile(tmpDir, image)
+    const dockerfileContent = await fsp.readFileAsync(dockerfilePath, 'utf8')
+    const firstLine = dockerfileContent.split('\n')[0]
 
-    const dockerfile = path.join(tmpDir, 'my-project.dockerfile')
-    const res = await fsp.readFileAsync(dockerfile, 'utf8')
-
-    expect(res).toMatch(/FROM node:latest/)
-    expect(res).toMatch(/ONBUILD COPY . \/usr\/src\/app/)
+    expect(dockerfilePath).toEqual(path.join(tmpDir, '.pipeline.dockerfile'))
+    expect(firstLine).toEqual('FROM node:latest')
+    expect(dockerfileContent).toMatch(/FROM node:latest/)
+    expect(dockerfileContent).toMatch(/COPY . \/usr\/src\/app/)
   })
 })
