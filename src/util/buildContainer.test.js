@@ -28,15 +28,17 @@ describe('buildContainer()', () => {
     const dockerfilePath = path.join(tmpDir, 'my-project.dockerfile')
     await fsp.writeFileAsync(dockerfilePath, 'FROM node:latest', 'utf8')
 
-    await buildContainer(dockerfilePath, projectDirPath)
+    const tag = await buildContainer(dockerfilePath, projectDirPath)
 
+    const expectedTag = 'pipeline/my-project/node:latest'
     expect(execa).toHaveBeenCalledWith('docker', [
       'build',
       '--tag',
-      'pipeline/my-project/node:latest',
+      expectedTag,
       '--file',
       dockerfilePath,
       '/some/path/my-project'
     ])
+    expect(tag).toEqual(expectedTag)
   })
 })
