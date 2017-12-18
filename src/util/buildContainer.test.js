@@ -16,7 +16,7 @@ afterAll(() => {
 })
 
 describe('buildContainer()', () => {
-  const projectDirPath = '/some/path'
+  const projectDirPath = '/some/path/my-project'
   let tmpDir
 
   beforeEach(async () => {
@@ -25,7 +25,7 @@ describe('buildContainer()', () => {
   })
 
   it('should build the container', async () => {
-    const dockerfilePath = path.join(tmpDir, 'Dockerfile')
+    const dockerfilePath = path.join(tmpDir, 'my-project.dockerfile')
     await fsp.writeFileAsync(dockerfilePath, 'FROM node:latest', 'utf8')
 
     await buildContainer(dockerfilePath, projectDirPath)
@@ -33,10 +33,10 @@ describe('buildContainer()', () => {
     expect(execa).toHaveBeenCalledWith('docker', [
       'build',
       '--tag',
-      'pipeline/node:latest',
+      'pipeline/my-project/node:latest',
       '--file',
       dockerfilePath,
-      '/some/path'
+      '/some/path/my-project'
     ])
   })
 })
