@@ -2,7 +2,6 @@ import execa from 'execa'
 import runContainer from './runContainer'
 
 jest.mock('execa', () => ({
-  // NOTE using native promises instead of Bluebird here so that Jest won't bite
   shell: jest.fn(() => Promise.resolve({ stdout: 'some-container-id' }))
 }))
 

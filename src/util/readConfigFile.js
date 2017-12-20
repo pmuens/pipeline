@@ -1,10 +1,10 @@
 import fs from 'fs'
 import path from 'path'
-import Promise from 'bluebird'
+import BbPromise from 'bluebird'
 import yaml from 'js-yaml'
 import isValidConfigFile from './isValidConfigFile'
 
-const fsp = Promise.promisifyAll(fs)
+const fsp = BbPromise.promisifyAll(fs)
 
 async function readConfigFile(filePath) {
   const fileName = filePath

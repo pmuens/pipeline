@@ -1,5 +1,4 @@
 import execa from 'execa'
-import Promise from 'bluebird'
 import isDockerRunning from './isDockerRunning'
 
 jest.mock('execa')

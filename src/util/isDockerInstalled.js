@@ -1,8 +1,8 @@
 import which from 'which'
-import Promise from 'bluebird'
+import BbPromise from 'bluebird'
 
 async function isDockerInstalled() {
-  return Promise.fromCallback((callback) => {
+  return BbPromise.fromCallback((callback) => {
     which('docker', callback)
   })
     .then(() => true)

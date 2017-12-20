@@ -1,9 +1,9 @@
 import path from 'path'
 import fs from 'fs'
-import Promise from 'bluebird'
+import BbPromise from 'bluebird'
 import execa from 'execa'
 
-const fsp = Promise.promisifyAll(fs)
+const fsp = BbPromise.promisifyAll(fs)
 
 async function buildContainer(dockerfilePath, projectDirPath) {
   const projectName = projectDirPath

@@ -1,10 +1,10 @@
 import path from 'path'
 import fse from 'fs-extra'
-import Promise from 'bluebird'
+import BbPromise from 'bluebird'
 import writeDockerfile from './writeDockerfile'
 import getTmpDirPath from './getTmpDirPath'
 
-const fsp = Promise.promisifyAll(fse)
+const fsp = BbPromise.promisifyAll(fse)
 
 describe('writeDockerfile()', () => {
   let tmpDir

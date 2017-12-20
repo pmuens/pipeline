@@ -1,8 +1,8 @@
 import path from 'path'
 import fs from 'fs'
-import Promise from 'bluebird'
+import BbPromise from 'bluebird'
 
-const fsp = Promise.promisifyAll(fs)
+const fsp = BbPromise.promisifyAll(fs)
 
 async function writeDockerfile(dirPath, image) {
   const fileContent = [

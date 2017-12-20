@@ -1,11 +1,11 @@
 import path from 'path'
 import execa from 'execa'
 import fse from 'fs-extra'
-import Promise from 'bluebird'
+import BbPromise from 'bluebird'
 import buildContainer from './buildContainer'
 import getTmpDirPath from './getTmpDirPath'
 
-const fsp = Promise.promisifyAll(fse)
+const fsp = BbPromise.promisifyAll(fse)
 
 jest.mock('execa')
 

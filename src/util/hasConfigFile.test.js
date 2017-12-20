@@ -1,10 +1,10 @@
 import path from 'path'
-import Promise from 'bluebird'
+import BbPromise from 'bluebird'
 import fse from 'fs-extra'
 import hasConfigFile from './hasConfigFile'
 import getTmpDirPath from './getTmpDirPath'
 
-const fsp = Promise.promisifyAll(fse)
+const fsp = BbPromise.promisifyAll(fse)
 
 describe('hasConfigFile()', () => {
   let tmpDir
