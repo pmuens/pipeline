@@ -1,28 +1,28 @@
 import BbPromise from 'bluebird'
-import getContainerState from './getContainerState'
+import inspectContainer from './inspectContainer'
 import waitForCompletion from './waitForCompletion'
 
 jest.mock('bluebird', () => ({
   delay: jest.fn(() => Promise.resolve())
 }))
 
-jest.mock('./getContainerState')
+jest.mock('./inspectContainer')
 
 afterAll(() => {
   BbPromise.delay.mockRestore()
-  getContainerState.mockRestore()
+  inspectContainer.mockRestore()
 })
 
 describe('waitForCompletion()', () => {
   beforeEach(() => {
-    getContainerState.mockReset()
+    inspectContainer.mockReset()
   })
 
   it('should check the container state until it has the status of "exited"', async () => {
-    getContainerState.mockImplementationOnce(() =>
-      Promise.resolve({ Status: 'running', Running: true }))
-    getContainerState.mockImplementationOnce(() =>
-      Promise.resolve({ Status: 'exited', Running: false }))
+    inspectContainer.mockImplementationOnce(() =>
+      Promise.resolve({ State: { Status: 'running', Running: true } }))
+    inspectContainer.mockImplementationOnce(() =>
+      Promise.resolve({ State: { Status: 'exited', Running: false } }))
 
     const containerId = 'some-container-id'
     const timeout = 5000
@@ -30,15 +30,15 @@ describe('waitForCompletion()', () => {
     const finalState = await waitForCompletion(containerId, timeout)
 
     expect(BbPromise.delay).toHaveBeenCalledWith(timeout)
-    expect(getContainerState).toHaveBeenCalledWith(containerId)
+    expect(inspectContainer).toHaveBeenCalledWith(containerId)
     expect(finalState).toEqual({ Status: 'exited', Running: false })
   })
 
   it('should check the container state until it has the status of "dead"', async () => {
-    getContainerState.mockImplementationOnce(() =>
-      Promise.resolve({ Status: 'running', Running: true }))
-    getContainerState.mockImplementationOnce(() =>
-      Promise.resolve({ Status: 'dead', Running: false }))
+    inspectContainer.mockImplementationOnce(() =>
+      Promise.resolve({ State: { Status: 'running', Running: true } }))
+    inspectContainer.mockImplementationOnce(() =>
+      Promise.resolve({ State: { Status: 'dead', Running: false } }))
 
     const containerId = 'some-container-id'
     const timeout = 5000
@@ -46,7 +46,7 @@ describe('waitForCompletion()', () => {
     const finalState = await waitForCompletion(containerId, timeout)
 
     expect(BbPromise.delay).toHaveBeenCalledWith(timeout)
-    expect(getContainerState).toHaveBeenCalledWith(containerId)
+    expect(inspectContainer).toHaveBeenCalledWith(containerId)
     expect(finalState).toEqual({ Status: 'dead', Running: false })
   })
 })
