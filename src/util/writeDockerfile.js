@@ -20,7 +20,10 @@ async function writeDockerfile(dirPath, image) {
     ''
   ].join('\n')
 
-  const dockerfilePath = path.join(dirPath, '.pipeline.dockerfile')
+  const regex = new RegExp('(:)+|(/)+', 'g')
+  const normalizedImageName = image.replace(regex, '-')
+
+  const dockerfilePath = path.join(dirPath, `.pipeline.${normalizedImageName}.dockerfile`)
   await fsp.writeFileAsync(dockerfilePath, fileContent, 'utf8')
   return dockerfilePath
 }
