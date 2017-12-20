@@ -2,7 +2,7 @@ import path from 'path'
 import fse from 'fs-extra'
 import BbPromise from 'bluebird'
 import writeDockerfile from './writeDockerfile'
-import getTmpDirPath from './getTmpDirPath'
+import getTmpDirPath from '../getTmpDirPath'
 
 const fsp = BbPromise.promisifyAll(fse)
 

@@ -3,7 +3,7 @@ import execa from 'execa'
 import fse from 'fs-extra'
 import BbPromise from 'bluebird'
 import buildContainer from './buildContainer'
-import getTmpDirPath from './getTmpDirPath'
+import getTmpDirPath from '../getTmpDirPath'
 
 const fsp = BbPromise.promisifyAll(fse)
 

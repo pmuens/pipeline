@@ -1,7 +1,7 @@
 import path from 'path'
 import fse from 'fs-extra'
 import BbPromise from 'bluebird'
-import getTmpDirPath from './getTmpDirPath'
+import getTmpDirPath from '../getTmpDirPath'
 import cleanupDockerfiles from './cleanupDockerfiles'
 
 const fsp = BbPromise.promisifyAll(fse)
