@@ -5,7 +5,7 @@ import execa from 'execa'
 
 const fsp = BbPromise.promisifyAll(fs)
 
-async function buildContainer(dockerfilePath, projectDirPath) {
+async function buildContainer(projectDirPath, dockerfilePath) {
   const projectName = projectDirPath
     .split(path.sep)
     .slice(-1)
