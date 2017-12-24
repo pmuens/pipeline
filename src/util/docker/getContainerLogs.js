@@ -11,7 +11,7 @@ async function getContainerLogs(containerId) {
     const logs = map((log) => {
       const matchRes = log.match(/(.+Z )(.*)/)
       return {
-        timestamp: matchRes[1].trim(), // remove space between timestamp and message
+        timestamp: new Date(matchRes[1].trim()), // remove space between timestamp and message
         message: matchRes[2]
       }
     }, output)
