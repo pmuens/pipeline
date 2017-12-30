@@ -34,8 +34,7 @@ describe('db', () => {
       await fsp.ensureFileAsync(filePath)
       const DB = db({ filePath })
 
-      // TODO workaround for https://github.com/facebook/jest/issues/3601
-      await expect(DB.create()).rejects.toHaveProperty('message')
+      await expect(DB.create()).rejects.toThrow('already exists')
     })
   })
 
@@ -69,8 +68,7 @@ describe('db', () => {
       await fsp.writeFileAsync(filePath, '[]')
       const obj = 'invalid value'
 
-      // TODO workaround for https://github.com/facebook/jest/issues/3601
-      await expect(DB.insert(obj)).rejects.toHaveProperty('message')
+      await expect(DB.insert(obj)).rejects.toThrow('must be an object')
     })
   })
 
@@ -92,8 +90,7 @@ describe('db', () => {
     it('should throw if query is not an object', async () => {
       const query = 'invalid query'
 
-      // TODO workaround for https://github.com/facebook/jest/issues/3601
-      await expect(DB.get(query)).rejects.toHaveProperty('message')
+      await expect(DB.get(query)).rejects.toThrow('must be an object')
     })
 
     it('should return all data if no query object is provided', async () => {
@@ -121,8 +118,7 @@ describe('db', () => {
     it('should throw if file content is not in JSON format', async () => {
       await fsp.writeFileAsync(filePath, 'some invalid format')
 
-      // TODO workaround for https://github.com/facebook/jest/issues/3601
-      await expect(DB.getDatabaseContent()).rejects.toHaveProperty('message')
+      await expect(DB.getDatabaseContent()).rejects.toThrow('must be in JSON format')
     })
   })
 

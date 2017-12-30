@@ -28,7 +28,6 @@ describe('readConfigFile()', () => {
     const filePath = path.join(tmpDir, '.foo.bar')
     await fsp.writeFileAsync(filePath, fileContent)
 
-    // TODO workaround for https://github.com/facebook/jest/issues/3601
-    await expect(readConfigFile(filePath)).rejects.toHaveProperty('message')
+    await expect(readConfigFile(filePath)).rejects.toThrow('not a Pipeline config')
   })
 })

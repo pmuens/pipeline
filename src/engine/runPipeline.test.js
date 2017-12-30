@@ -46,7 +46,6 @@ describe('runPipeline()', () => {
     runJobs.mockImplementationOnce(() =>
       Promise.resolve([{ id: '1', exitCode: 0 }, { id: '2', exitCode: 0 }]))
 
-    // TODO workaround for https://github.com/facebook/jest/issues/3601
-    await expect(runPipeline(projectDirPath, pipeline)).rejects.toHaveProperty('message')
+    await expect(runPipeline(projectDirPath, pipeline)).rejects.toThrow('Job with id')
   })
 })
