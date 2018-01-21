@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+const args = process.argv.slice(2)
+const cli = require('../dist')
+
+// re-throw unhandled Promise rejections
+process.on('unhandledRejection', (err) => {
+  throw new Error(err.message)
+})
+
+const command = args[0]
+const path = args[1]
+
+cli(command, path)
