@@ -1,0 +1,8 @@
+pipeline:
+  - name: test
+    images:
+      - node:latest
+    commands:
+      - rm -rf node_modules
+      - npm install
+      - npm test
