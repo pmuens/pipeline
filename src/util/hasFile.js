@@ -1,14 +1,13 @@
-import path from 'path'
 import fs from 'fs'
 import BbPromise from 'bluebird'
 
 const fsp = BbPromise.promisifyAll(fs)
 
-async function hasConfigFile(dirPath) {
+async function hasFile(filePath) {
   return fsp
-    .statAsync(path.join(dirPath, '.pipeline.yml'))
+    .statAsync(filePath)
     .then(() => true)
     .catch(() => false)
 }
 
-export default hasConfigFile
+export default hasFile
